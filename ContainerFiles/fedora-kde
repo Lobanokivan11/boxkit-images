@@ -1,0 +1,15 @@
+FROM quay.io/fedora/fedora-toolbox:latest
+
+LABEL com.github.containers.toolbox="true" \
+      usage="This image is meant to be used with the toolbox or distrobox command" \
+      summary="An FEDORA KDE Container" \
+      maintainer="lobanokivan11@gmail.com"
+
+# Copy the setup scripts and package list
+COPY ../scripts/fedora-kde.sh /
+COPY ../scripts/distrobox-shims.sh /
+COPY ../packages/fedora-kde.packages /
+
+# Run the setup scripts
+RUN chmod +x fedora-kde.sh distrobox-shims.sh && /fedora-kde.sh
+RUN rm /fedora-kde.sh /distrobox-shims.sh /fedora-kde.packages

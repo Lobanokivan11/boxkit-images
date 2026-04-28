@@ -1,0 +1,15 @@
+FROM quay.io/fedora/fedora-toolbox:latest
+
+LABEL com.github.containers.toolbox="true" \
+      usage="This image is meant to be used with the toolbox or distrobox command" \
+      summary="An FEDORA GNOME Container" \
+      maintainer="lobanokivan11@gmail.com"
+
+# Copy the setup scripts and package list
+COPY ../scripts/fedora-gnome.sh /
+COPY ../scripts/distrobox-shims.sh /
+COPY ../packages/fedora-gnome.packages /
+
+# Run the setup scripts
+RUN chmod +x fedora-gnome.sh distrobox-shims.sh && /fedora-gnome.sh
+RUN rm /fedora-gnome.sh /distrobox-shims.sh /fedora-gnome.packages

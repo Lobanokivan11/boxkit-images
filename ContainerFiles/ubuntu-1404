@@ -1,0 +1,15 @@
+FROM docker.io/library/ubuntu:14.04
+
+LABEL com.github.containers.toolbox="true" \
+      usage="This image is meant to be used with the toolbox or distrobox command" \
+      summary="An UBUNTU 14.04 Container" \
+      maintainer="lobanokivan11@gmail.com"
+
+# Copy the setup scripts and package list
+COPY ../scripts/ubuntu-1404.sh /
+COPY ../scripts/distrobox-shims.sh /
+COPY ../packages/ubuntu-1404.packages /
+
+# Run the setup scripts
+RUN chmod +x ubuntu-1404.sh distrobox-shims.sh && /ubuntu-1404.sh
+RUN rm /ubuntu-1404.sh /distrobox-shims.sh /ubuntu-1404.packages

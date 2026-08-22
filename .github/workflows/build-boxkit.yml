@@ -10,7 +10,7 @@ on:
     paths-ignore: # don't rebuild on documentation change
       - '**.md'
   schedule:
-    - cron: '0 0 * * TUE'
+    - cron: '0 * * * *'
 
 env:
     IMAGE_TAGS: latest
@@ -31,6 +31,7 @@ jobs:
           - boxkit
           - fedora-kde
           - fedora-gnome
+          - ubuntu-1404
        #- fedora-example # Included as an example to demonstrate multi-image builds, uncomment to build the fedora-example container too
     steps:
       # Clone code to runner
